@@ -1,38 +1,38 @@
 /* Brent Vaalburg CSCI312
  * Davenport University
  * Week 3 Sorting Assignment
- * ******Bubble Sort************
+ * *****Java Supplied Sort Method*********
  * Dependencies: 
  * Java8 Standard Library
  */
 import java.util.Random;
 import java.util.stream.IntStream;
+import java.util.Arrays;
 
-// Java program for implementation of Bubble Sort
-class BubbleSort
-{
-    int sort(int array[])
-    {
+public class JavaSort {
+	
+    int[] randomInts(int count) {
+    	
+    	//use java8 stream api to generate array of random integers.
+        int[] array = IntStream.generate(() -> new Random().nextInt(100)).limit(count).toArray();
+        
+        //return the array of random ints to pass to the sort method
+        return array;
+    }
+    
+    int sort(int array[]) {
+    	
     	//set time counting variables to 0
     	long start = System.currentTimeMillis();
     	long end = 0;
     	long total = 0;
     	
-    	//creates new int n to store the length of the array
-        int n = array.length;
-        
-        //*****************BubbleSort algorithm******************//
-        for (int i = 0; i < n-1; i++)
-            for (int j = 0; j < n-i-1; j++)
-                if (array[j] > array[j+1])
-                {
-                    int temp = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = temp;
-                }
-        //*****************************************************//
-        
-        //calculate time of sorting and store to toal variable
+    	//*************JAVA SORT METHOD*********************//
+    	//sort the array using the java sort method of the standard library
+    	Arrays.sort(array);
+    	//***************************************************//
+    	
+    	//calculate time of sorting and store to toal variable
         end = System.currentTimeMillis();
         total = end - start;
         
@@ -40,18 +40,6 @@ class BubbleSort
         return (int) total;
     }
     
-    int[] randomInts(int count) {
-    	
-    	//use java8 stream api to generate array of random integers.
-        int[] array = IntStream.generate(() -> new Random().nextInt(100)).limit(count).toArray();
-        
-        
-        //return the array of random ints to pass to the sort method
-        return array;
-    }
- 
-
-
     public static void main(String args[])
     {
     	//int array of sizes from the assignment instructions
@@ -67,7 +55,7 @@ class BubbleSort
     	for (int i = 0; i < n; i++) {
     		
     		//for each array size to make create a BubbleSort object
-            BubbleSort object = new BubbleSort();
+            JavaSort object = new JavaSort();
             
             //get which numElements item to print to console
             int a = numElements[i]; 
@@ -81,4 +69,6 @@ class BubbleSort
     	}
         
     }
+
+
 }
